@@ -1,11 +1,17 @@
 # Function to load the data form the file and transform it into a useful format.
 load_data <- function() {
-    #Read file in
+    # Download compressed data file
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+    download.file(url, destfile = "./consumption.zip")
+    
+    #Uncompress and read file
     power_consumption <- read.csv2(
-        "household_power_consumption.txt", 
+        unz("consumption.zip", "household_power_consumption.txt"), 
         na.strings = "?", 
         stringsAsFactors = FALSE
     )
+    
+    closeAllConnections()
     
     # Convert Date column to dates, and use that to limit the data to only the days we're interested 
     # in.

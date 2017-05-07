@@ -1,7 +1,7 @@
 source("load_data.R")
 
 
-# Function to plot a histogram of global active power values.
+# Function to plot a time series of global active power values.
 plot2 <- function() {
     if (!exists("power_consumption")) {
         power_consumption <<- load_data()
